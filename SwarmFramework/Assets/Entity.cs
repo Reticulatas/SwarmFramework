@@ -41,7 +41,8 @@ public class Entity : MonoBehaviour
         Health = CorspeHealth;
         body.isKinematic = false;
         body.useGravity = true;
-        body.AddExplosionForce(100, transform.position - Vector3.down, 1);
-        anim.Stop();
+        body.AddExplosionForce(5, transform.position - Vector3.down, 1);
+        if (anim)
+            anim.Stop();
     }
 }

@@ -4,6 +4,7 @@ using System.Collections;
 public class OrbitCam : MonoBehaviour
 {
     public Transform target;
+    public PlayerCharacter player;
     public float distance = 5.0f;
     public float xSpeed = 120.0f;
     public float ySpeed = 120.0f;
@@ -28,8 +29,13 @@ public class OrbitCam : MonoBehaviour
     {
         if (target)
         {
-            x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
-            y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+            if (player.PlayerNumber == 0)
+            {
+                x += Input.GetAxis("Mouse X")*xSpeed*distance*0.02f;
+                y -= Input.GetAxis("Mouse Y")*ySpeed*0.02f;
+            }
+            x += Input.GetAxis(player.inputTag + "Horizontal2") * xSpeed * distance * 0.02f;
+            y -= Input.GetAxis(player.inputTag + "Vertical2") * ySpeed * 0.02f;
 
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 
